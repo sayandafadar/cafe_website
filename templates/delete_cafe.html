@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Closed</title>
+</head>
+<body>
+<section class="hero is-primary is-fullheight">
+    {% include "header.html" %}
+  <div class="hero-body">
+    <div class="container">
+        <form action="{{ url_for('delete') }}" method="POST">
+            <h1 class="has-text-centered title">Report Closed</h1>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="has-text-centered mb-1 has-text-danger-dark">{{ message }}</p>
+                 {% endfor %}
+                {% endif %}
+            {% endwith %}
+         <div class="columns is-centered">
+         <div class="column is-half">
+             <label class="label has-text-white ">API KEY  (Only our team members has access to it.)</label>
+        <div class="control">
+                <input class="input" name="api_key" type="password" placeholder="Members API Key">
+</div>
+             <div class="field">
+  <label class="label has-text-white mt-3">CAFE ID</label>
+  <div class="control">
+    <input class="input" name="delete_cafe_id" type="text" placeholder="Cafe Id">
+  </div>
+        </div>
+            <input type="checkbox">
+            <label class="checkbox">
+                 Are you sure?
+            </label>
+            <div class="field is-grouped  mt-3">
+                <button class="button is-light is-primary mr-2" type="submit">Submit</button>
+      <a href="{{ url_for('cafes') }}" class="button is-danger">Cancel</a>
+    </div>
+</div>
+    </div>
+        </form>
+  </div>
+  </div>
+</section>
+
+</body>
+</html>

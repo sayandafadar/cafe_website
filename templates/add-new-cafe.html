@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Add New Cafe</title>
+</head>
+<body>
+<section class="hero is-primary is-fullheight">
+    {% include "header.html" %}
+  <div class="hero-body">
+    <div class="container">
+        <h1 class="has-text-centered title">Add New Cafe</h1>
+        <form action="{{ url_for('add_new_cafe') }}" method="POST">
+         <div class="columns is-centered">
+         <div class="column is-half">
+             <label class="label has-text-white">Name of Cafe</label>
+        <div class="control">
+  <input class="input" name="name" type="text" placeholder="Name of Cafe" required>
+</div>
+             <div class="field">
+  <label class="label has-text-white">Map Url</label>
+  <div class="control">
+    <input class="input" name="map_url" type="url" placeholder="Map Url" required>
+  </div>
+</div>
+             <div class="field">
+  <label class="label has-text-white">Image Url</label>
+  <div class="control">
+    <input class="input" name="img_url" type="url" placeholder="Image Url" required>
+  </div>
+</div>
+             <div class="field">
+  <label class="label has-text-white">Location</label>
+  <div class="control">
+    <input class="input" name="loc" type="text" placeholder="Location" required>
+  </div>
+</div>
+             <div class="field is-horizontal">
+  <label class="label has-text-white mr-3">Has Sockets</label>
+  <div class="control">
+    <div class="field">
+  <p class="control">
+    <span class="select mr-3">
+      <select name="sockets">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </span>
+  </p>
+</div>
+  </div>
+                 <label class="label has-text-white mr-3">Has Toilet</label>
+  <div class="control">
+    <div class="field">
+  <p class="control">
+    <span class="select mr-3">
+      <select name="toilet">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </span>
+  </p>
+</div>
+  </div>
+                 <label class="label has-text-white mr-3">Has Wifi</label>
+  <div class="control">
+    <div class="field">
+  <p class="control">
+    <span class="select mr-3">
+      <select name="wifi">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </span>
+  </p>
+</div>
+  </div>
+                 <label class="label has-text-white mr-4">Take Calls</label>
+  <div class="control">
+    <div class="field">
+  <p class="control">
+    <span class="select mr-2">
+      <select name="calls">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </span>
+  </p>
+</div>
+  </div>
+</div>
+<div class="field">
+  <label class="label has-text-white">Number of Seats</label>
+  <div class="control">
+    <input class="input" name="seats" type="text" placeholder="Number of Seats" required>
+  </div>
+</div>
+             <label class="label has-text-white">Coffee Price</label>
+             <div class="field is-expanded">
+             <div class="field has-addons has-addons-right">
+                 <p class="control">
+    <span class="select">
+      <select name="currency">
+        <option>£</option>
+        <option>$</option>
+        <option>€</option>
+      </select>
+    </span>
+  </p>
+  <div class="control is-expanded">
+    <input class="input" name="coffee_price" type="text" placeholder="Coffee Price" required>
+  </div>
+</div>
+</div>
+<div class="field is-grouped">
+  <p class="control">
+    <button type="submit" class="button is-primary is-light">
+      Submit
+    </button>
+  </p>
+  <p class="control">
+    <a href="{{ url_for('cafes') }}" class="button is-danger is-light">
+      Cancel
+    </a>
+  </p>
+</div>
+  </div>
+  </div>
+        </form>
+    </div>
+      </div>
+</section>
+</body>
+</html>

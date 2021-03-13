@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="{{ url_for('cafes') }}">
+            <h1 class="title">Cafe & Wifi</h1>
+          </a>
+          <span class="navbar-burger" data-target="navbarMenuHeroA">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="{{ url_for('cafes') }}">
+              Home
+            </a>
+            <a class="navbar-item" href="{{ url_for('add_new_cafe') }}">
+              Add New Cafe
+            </a>
+            <a href="{{ url_for('delete') }}" class="navbar-item">
+              Report Closed
+            </a>
+            <form action="{{ url_for('search_cafe')}}" method="POST">
+            <span class="navbar-item field has-addons" >
+              <a>
+                <input class="input is-rounded" name="location" type="text" placeholder="Search By Location">
+              </a>
+              <button type="submit" class="button has-text-primary is-rounded ml-2">Search</button>
+            </span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+</body>
+</html>

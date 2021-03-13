@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Cafes</title>
+</head>
+<body>
+<section class="hero is-primary is-fullheight">
+    {% include "header.html" %}
+  <div class="hero-body">
+    <div class="container has-text-centered">
+        <table class="table">
+  <thead>
+    <tr>
+      <th>Cafe ID</th>
+      <th>Cafe Name</th>
+      <th>Image</th>
+      <th>Location</th>
+      <th>Map Link</th>
+      <th>Coffee Price</th>
+      <th>WiFi</th>
+      <th>Sockets</th>
+      <th>Toilet</th>
+      <th>Take Calls</th>
+      <th>Seats</th>
+        <th>Edit Coffee Price</th>
+    </tr>
+  </thead>
+            <tbody>
+    {% for cafe in cafes %}
+  <tr>
+    <th>{{cafe.id}}</th>
+    <td>{{cafe.name}}</td>
+    <td><figure class="image is-square is-128x128">
+  <a href={{cafe.img_url}}><img src={{cafe.img_url}}></a>
+</figure></td>
+    <td>{{cafe.location}}</td>
+    <td><a href={{cafe.map_url}} title={{cafe.name}}>Map Link</a></td>
+    <td class="has-text-centered">{{cafe.coffee_price}}</td>
+    {% if cafe.has_wifi == true %}
+    <td class="has-text-centered">✔</td>
+    {% else %}
+    <td class="has-text-centered">❌</td>
+    {% endif %}
+    {% if cafe.has_sockets == true %}
+    <td class="has-text-centered">✔</td>
+    {% else %}
+    <td class="has-text-centered">❌</td>
+    {% endif %}
+    {% if cafe.has_toilet == true %}
+    <td class="has-text-centered">✔</td>
+    {% else %}
+    <td class="has-text-centered">❌</td>
+    {% endif %}
+    {% if cafe.can_take_calls == true %}
+    <td class="has-text-centered">✔</td>
+    {% else %}
+    <td class="has-text-centered">❌</td>
+    {% endif %}
+    <td class="has-text-centered">{{cafe.seats}}</td>
+      <td class="has-text-centered"><a href="{{ url_for('edit_price', id=cafe.id) }}">Edit Price</a></td>
+  </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

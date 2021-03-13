@@ -1,16 +1,16 @@
 import random
 from flask import Flask, jsonify, render_template, request, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-import requests
+from decouple import config
 from werkzeug.utils import redirect
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///all_cafes.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = config('DB_FILE')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
+CAFE_API_KEY = config('CAFE_API_KEY')
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
@@ -69,7 +69,7 @@ def edit_price():
 def delete():
     if request.method == "POST":
         api_key = request.form['api_key']
-        if api_key == "TopSecretAPIKey":
+        if api_key == CAFE_API_KEY:
             id_of_cafe_to_delete = request.form['delete_cafe_id']
             cafe_to_delete = Cafe.query.get(id_of_cafe_to_delete)
             if cafe_to_delete:

@@ -3,14 +3,16 @@ from flask import Flask, jsonify, render_template, request, session, url_for, fl
 from flask_sqlalchemy import SQLAlchemy
 from decouple import config
 from werkzeug.utils import redirect
+import os
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
-app.config['SQLALCHEMY_DATABASE_URI'] = config('DB_FILE')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', "sqlite:///all_cafes.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-CAFE_API_KEY = config('CAFE_API_KEY')
+CAFE_API_KEY = os.environ.get('API_KEY')
+
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
